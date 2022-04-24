@@ -1,0 +1,9 @@
+{
+  "main": "server.js",
+  "author": "Jon Hernandez",
+  "description": "Backend for Freedget",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "socket.io": "^4.4.0"
+  }
+}
