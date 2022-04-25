@@ -4,22 +4,23 @@
 /*********************************************/
  
 
-$darkgray: #2b2b2b;
-$mediumgray: #3c3f41;
-$lightgray: #afb1b3;
+$white: #E8EEF1;
+$blue1: #43B0F1;
+$blue2: #057DCD;
+$blue3: #1E3D58;
 
-$primary: $mediumgray;
-$body-bg: #2b2b2b;
-$body-color: $lightgray;
-$link-color: $lightgray;
-$link-hover-color: $lightgray;
-$nav-tabs-link-active-color: $lightgray;
+$primary: $blue2;
+$body-bg: $blue3;
+$body-color: $blue1;
+$link-color: $blue1;
+$link-hover-color: $blue1;
+$nav-tabs-link-active-color: $blue1;
 
 $theme-colors: (
   "primary": $primary,
-  "mediumgray": $mediumgray,
-  "darkgray": $mediumgray,
-  "lightgray": $lightgray,
+  "blue2": $blue2,
+  "blue3": $blue3,
+  "blue1": $blue1,
 );
 
 ::-webkit-scrollbar {
@@ -49,27 +50,27 @@ $theme-colors: (
 
 .Tello {
 
-  color: $lightgray !important;
-  background-color: $darkgray;
+  color: $blue1 !important;
+  background-color: $blue3;
   margin: 0;
 }
 
 .plot {
-  color: $lightgray !important;
+  color: $blue1 !important;
   height: 75vh;
   width: 95vw;
   
 }
 
 .title_style {
-  color: $lightgray !important;
+  color: $blue1 !important;
   cursor: pointer !important;
 }
 
 .btn-primary
 {
   background-color: $primary;
-  color: $lightgray;
+  color: $blue1;
 }
 
 .videoframe {

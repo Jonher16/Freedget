@@ -1,13 +1,14 @@
-
-import Panel from "./pages/Panel"
+import HeaderNav from "./components/HeaderNav"
 import "./App.scss"
+import Categorization from "./components/Categorization";
 
 
 function App() {
 
   return (
     <>
-    <Panel />
+    <HeaderNav />
+    <Categorization />
     </>
   );
 }
