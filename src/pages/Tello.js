@@ -2,12 +2,12 @@ import React from "react";
 import "../App.scss";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
-import Data from "../components/Data";
-import Graph from "../components/Graph";
+import Data from "../components_old/Data";
+import Graph from "../components_old/Graph";
 import { Tab } from "bootstrap";
 import Tabs from "react-bootstrap/esm/Tabs";
-import Video from "../components/Video";
-import Control from "../components/Control";
+import Video from "../components_old/Video";
+import Control from "../components_old/Control";
 
 const Tello = ({ socket, tellostatus }) => {
 
