@@ -1,30 +1,25 @@
-# FlexDrone
+# Freedget
 
-Bachellor's Thesis Project on Drone & Sensor management system.
-The aim of the project is to have as many drone modules as possible. Each module will allow the user to interact with the connected drone.
+Budget app to work on your Finantial Freedom.
 
-## Drone support
+### Change Log
 
-### Supported
-- DJI Ryze Tello: Drone control (Buttons + Keyboard), data, video
-### Planned to be supported
-- All drones supported by DJI Android SDK (Main focus on DJI Matrice 300 RTK): Gimbal control and video
+- Added monthly expected category expense distribution pie chart
+
+### To Do
+
+- Expense/Income list & balance
+- Bank Account balance
 
 ## Installation
 
-First, install dependencies in both frontend and backend.
+First, install dependencies.
 
 ```
-cd flexdrone
-npm install
-cd Backend
+cd Freedget
 npm install
 ```
-The IP address of the server can be easily changed in the .env files, located in both Backend and src folders.
-
-The machine where FlexDrone is deployed needs to have ffmpeg installed.
-For linux machines:
-
-```sudo apt install ffmpeg```
+then run with
+```npm start```
 
 
