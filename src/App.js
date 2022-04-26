@@ -1,6 +1,7 @@
 import HeaderNav from "./components/HeaderNav"
 import "./App.scss"
-import Categorization from "./components/Categorization";
+import Categorization from "./pages/Categorization";
+import ExpenseList from "./pages/ExpenseList";
 
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
   return (
     <>
     <HeaderNav />
-    <Categorization />
+    <ExpenseList />
     </>
   );
 }

@@ -4,7 +4,7 @@ import { Form } from 'react-bootstrap'
 import { AiOutlineEdit } from "react-icons/ai"
 import { useState } from 'react'
 import Plot from 'react-plotly.js';
-import CategoryComp from './CategoryComp'
+import CategoryComp from '../components/CategoryComp'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Categorization = () => {
@@ -101,7 +101,7 @@ const Categorization = () => {
                                 <Form.Control value={category} type="text" className="w-50" onChange={e => setCategory(e.target.value)} placeholder="Category name" />
                             </div>
                         </Form>
-                        <Card className="mt-3" style={{ width: '18rem' }}>
+                        <Card className="border mt-3 w-100">
                             <Card.Header>Category list</Card.Header>
                             <ListGroup variant="flush">
                                 {categories.map((cat, i) =>
