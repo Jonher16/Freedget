@@ -1,9 +1,17 @@
 {
-  "main": "server.js",
-  "author": "Jon Hernandez",
-  "description": "Backend for Freedget",
-  "dependencies": {
-    "dotenv": "^16.0.0",
-    "socket.io": "^4.4.0"
+    "name": "express-mongodb",
+    "version": "1.0.0",
+    "description": "rest express",
+    "main": "index.js",
+    "scripts": {
+      "dev": "node src/index.js"
+    },
+    "author": "loricode",
+    "license": "ISC",
+    "dependencies": {
+      "cors": "^2.8.5",
+      "express": "^4.17.1",
+      "express-fileupload": "^1.2.0",
+      "mongoose": "^5.10.0"
+    }
   }
-}

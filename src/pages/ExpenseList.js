@@ -3,6 +3,9 @@ import { Card, Form, ListGroup, Button } from 'react-bootstrap'
 import ExpenseComp from '../components/ExpenseComp'
 import Plot from 'react-plotly.js';
 import months from "../mockdata/expenses"
+import axios from 'axios';
+
+const URL = "http://localhost:4000/finance"
 
 const ExpenseList = () => {
 
@@ -49,26 +52,39 @@ const ExpenseList = () => {
         console.log(expenseList)
     }
 
-   const submitEntry = (e) => {
+    const postToDb = async (temp_newEntry) => {
+        console.log("TEMP",temp_newEntry)
+        const res = await axios.post(URL, temp_newEntry)
+        console.log(res.data)
+    }
+
+    const submitEntry = (e) => {
         e.preventDefault()
         var temp_selection = selection
         var temp_newEntry = newEntry
         var temp_balance = temp_newEntry.income - temp_newEntry.expense
-        setData(prevData=> ({
+        setData(prevData => ({
             ...prevData,
             list: [...prevData.list, temp_newEntry],
         }))
-        if (temp_balance < 0){
-        setExpenses(prev=>([...prev, -temp_balance]))
-        setCategories(prev=>([...prev, temp_newEntry.cat]))}
-        setBalance(prev=>(prev+temp_balance))
+        if (temp_balance < 0) {
+            setExpenses(prev => ([...prev, -temp_balance]))
+            setCategories(prev => ([...prev, temp_newEntry.cat]))
+        }
+        setBalance(prev => (prev + temp_balance))
+        postToDb(temp_newEntry)
     }
 
     useEffect(() => {
         console.log(data)
     }, [data])
 
-    useEffect(() => {console.log("Expenses ", expenses)},[expenses])
+    useEffect(() => { console.log("Expenses ", expenses) }, [expenses])
+
+    const getEntries = async (e) => {
+        const res = await axios.get(URL)
+        console.log(res.data)
+    }
 
     return (
         <div className="m-3 d-flex flex-row">
@@ -83,20 +99,20 @@ const ExpenseList = () => {
                     {selection &&
                         <>
                             <Form className="w-100 mt-3" >
-                                    <Form.Label>Add new expense</Form.Label>
-                                    <div className="d-flex flex-row justify-content-between">
-                                        <Form.Control value={newEntry.title} type="text" className="w-50" placeholder="Title" onChange={e=>setNewEntry({...newEntry, title: e.target.value})} />
-                                        <Form.Control value={newEntry.desc} type="text" className="w-50" placeholder="Description" onChange={e=>setNewEntry({...newEntry, desc: e.target.value})} />
-                                    </div>
-                                    <div className="d-flex flex-row justify-content-between">
-                                        <Form.Control value={newEntry.date} type="date" className="w-50" placeholder="Date" onChange={e=>setNewEntry({...newEntry, date: e.target.value})} />
-                                        <Form.Control value={newEntry.cat} type="text" className="w-50" placeholder="Category" onChange={e=>setNewEntry({...newEntry, cat: e.target.value})} />
-                                    </div>
-                                    <div className="d-flex flex-row justify-content-between">
-                                        <Form.Control value={newEntry.income} type="text" className="w-50" placeholder="Income" onChange={e=>setNewEntry({...newEntry, income: e.target.value})}/>
-                                        <Form.Control value={newEntry.expense} type="text" className="w-50" placeholder="Expense" onChange={e=>setNewEntry({...newEntry, expense: e.target.value})} />
-                                    </div>
-                                    <Button onClick={e=>submitEntry(e)}>Add entry</Button>
+                                <Form.Label>Add new expense</Form.Label>
+                                <div className="d-flex flex-row justify-content-between">
+                                    <Form.Control value={newEntry.title} type="text" className="w-50" placeholder="Title" onChange={e => setNewEntry({ ...newEntry, title: e.target.value })} />
+                                    <Form.Control value={newEntry.desc} type="text" className="w-50" placeholder="Description" onChange={e => setNewEntry({ ...newEntry, desc: e.target.value })} />
+                                </div>
+                                <div className="d-flex flex-row justify-content-between">
+                                    <Form.Control value={newEntry.date} type="date" className="w-50" placeholder="Date" onChange={e => setNewEntry({ ...newEntry, date: e.target.value })} />
+                                    <Form.Control value={newEntry.cat} type="text" className="w-50" placeholder="Category" onChange={e => setNewEntry({ ...newEntry, cat: e.target.value })} />
+                                </div>
+                                <div className="d-flex flex-row justify-content-between">
+                                    <Form.Control value={newEntry.income} type="text" className="w-50" placeholder="Income" onChange={e => setNewEntry({ ...newEntry, income: e.target.value })} />
+                                    <Form.Control value={newEntry.expense} type="text" className="w-50" placeholder="Expense" onChange={e => setNewEntry({ ...newEntry, expense: e.target.value })} />
+                                </div>
+                                <Button onClick={e => submitEntry(e)}>Add entry</Button>
                             </Form>
                             <Card className="w-100 mt-3">
                                 <Card.Header className="d-flex flex-row justify-content-between"><p>Expense List</p><div className="d-flex flex-row"><p className="mr-2">Total Balance: </p><p style={balance < 0 ? { color: 'red' } : { color: 'green' }}>{balance}</p></div></Card.Header>
@@ -109,21 +125,25 @@ const ExpenseList = () => {
                 </Form>
 
             </div>
-            <Plot
-                data={[{
-                    values: expenses,
-                    labels: categories,
-                    type: "pie"
-                }]}
-                layout={{
-                    width: 500,
-                    height: 500,
-                    title: 'Expense Division',
-                    paper_bgcolor: "#1E3D58",
-                    font: {
-                        color: "#43B0F1",
-                    },
-                }} />
+            <div className="d-flex flex-column align-items-center">
+                <Plot
+                    data={[{
+                        values: expenses,
+                        labels: categories,
+                        type: "pie"
+                    }]}
+                    layout={{
+                        width: 500,
+                        height: 500,
+                        title: 'Expense Division',
+                        paper_bgcolor: "#1E3D58",
+                        font: {
+                            color: "#43B0F1",
+                        },
+                    }} />
+                {/* <h1>Total expenses: {expenses.reduce((a, b) => parseFloat(a) + parseFloat(b), 0)}</h1> */}
+                <Button onClick={e=>getEntries(e)}>Get shit</Button>
+            </div>
         </div>
     )
 }
