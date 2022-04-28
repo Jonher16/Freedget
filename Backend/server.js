@@ -34,9 +34,27 @@ const EntriesModel = mongoose.model('entries', EntriesSchema)
 
 
 app.get('/finance', async (req, res) => {
-    let entries = await EntriesModel.find()
+    let entries = await EntriesModel.find().sort({"date": 1})
     res.json( entries )
     console.log(entries)
+})
+
+app.get('/finance/:month', async (req, res) => {
+  const { month } = req.params 
+  let entries = await EntriesModel.find({date: { "$regex": month, "$options": "i" }}).sort({"date":1})
+  res.json( entries )
+})
+
+app.get('/months', async (req, res) => {
+  let entries = await EntriesModel.find().sort({"date": 1})
+  let dup_months = []
+  entries.map(entry=>{
+   let stringArray = entry.date.split("-")
+   let date = stringArray[0]+"-"+stringArray[1]
+    dup_months.push(date)
+  })
+  let months = [...new Set(dup_months)]
+  res.json( months )
 })
 
 app.post('/finance', async (req, res) => {

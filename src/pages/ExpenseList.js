@@ -82,7 +82,8 @@ const ExpenseList = () => {
     useEffect(() => { console.log("Expenses ", expenses) }, [expenses])
 
     const getEntries = async (e) => {
-        const res = await axios.get(URL)
+        const URL2 = "http://localhost:4000/months"
+        const res = await axios.get(URL2)
         console.log(res.data)
     }
 
