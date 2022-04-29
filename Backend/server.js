@@ -39,7 +39,7 @@ app.get('/finance', async (req, res) => {
     console.log(entries)
 })
 
-app.get('/finance/:month', async (req, res) => {
+app.get('/getdata/:month', async (req, res) => {
   const { month } = req.params 
   let entries = await EntriesModel.find({date: { "$regex": month, "$options": "i" }}).sort({"date":1})
   res.json( entries )
@@ -57,7 +57,7 @@ app.get('/months', async (req, res) => {
   res.json( months )
 })
 
-app.post('/finance', async (req, res) => {
+app.post('/newentry', async (req, res) => {
   const {title, desc, date, cat, income, expense} = req.body
   const entry = new EntriesModel({ title, desc, date, cat, income, expense})
   await entry.save() 
