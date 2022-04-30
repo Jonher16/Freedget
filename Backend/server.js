@@ -65,6 +65,12 @@ app.post('/newentry', async (req, res) => {
   console.log("Entry successful")
 });
 
+app.delete('/deleteentry/:id', async (req, res) => {
+  const { id } = req.params
+  await EntriesModel.deleteOne({ _id: id })
+  res.json({ msg:'Entry deleted' })
+})
+
 app.listen(port, () => {
   console.log(`app listening at http://localhost:${port}`)
 })
