@@ -69,6 +69,7 @@ app.delete('/deleteentry/:id', async (req, res) => {
   const { id } = req.params
   await EntriesModel.deleteOne({ _id: id })
   res.json({ msg:'Entry deleted' })
+  console.log("Entry deleted")
 })
 
 app.listen(port, () => {

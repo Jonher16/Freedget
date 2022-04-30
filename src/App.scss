@@ -48,13 +48,6 @@ $theme-colors: (
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
-.Tello {
-
-  color: $blue1 !important;
-  background-color: $blue3;
-  margin: 0;
-}
-
 .plot {
   color: $blue1 !important;
   height: 75vh;
@@ -124,7 +117,7 @@ width: 100vw;
     justify-content: center;
     padding: 2rem;
     padding-top: 3rem !important;
-    background-color: #3c3f41;
+    background-color: $blue2;
     text-align: center;
     transition: transform .2s;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
