@@ -3,6 +3,8 @@ import { Card, Form, ListGroup, Button } from 'react-bootstrap'
 import ExpenseComp from '../components/ExpenseComp'
 import Plot from 'react-plotly.js';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ExpenseList = () => {
 
@@ -29,6 +31,7 @@ const ExpenseList = () => {
         var monthArray = temp_newEntry.date.split("-")
         var month = monthArray[0] + "-" + monthArray[1]
         getEntries(month)
+        toast("Entry successful!")
     }
 
     useEffect(() => {
@@ -73,6 +76,7 @@ const ExpenseList = () => {
         getMonths()
         var temp_selection = selection
         getEntries(temp_selection)
+        toast("Entry deleted!")
     }
 
     return (
@@ -80,6 +84,7 @@ const ExpenseList = () => {
 
             <div className="w-50">
                 <h2>ExpenseList</h2>
+                <ToastContainer></ToastContainer>
                 <Form>
                     <Form.Select onChange={e => getEntries(e.target.value)} aria-label="Default select example">
                         <option value="nono">Select month</option>
@@ -115,7 +120,7 @@ const ExpenseList = () => {
 
 
             </div>
-            <div className="d-flex flex-column align-items-center">
+            <div className="pl-4 d-flex flex-column align-items-center">
                 <Plot
                     data={[{
                         values: expenses,
@@ -131,8 +136,8 @@ const ExpenseList = () => {
                             color: "#43B0F1",
                         },
                     }} />
-                {/* <h1>Total expenses: {expenses.reduce((a, b) => parseFloat(a) + parseFloat(b), 0)}</h1> */}
-                <Button value={"2022-04"} onClick={e => getEntries(e)}>Get shit</Button>
+                <h1>Total expenses: {expenses?.reduce((a, b) => parseFloat(a) + parseFloat(b), 0)}</h1>
+               
             </div>
         </div>
     )
